@@ -8,11 +8,17 @@ use std::{
     process,
 };
 
-const MODULE_TEMPLATE: &str = r###"pub fn part_one(input: &str) -> Option<u32> {
+const MODULE_TEMPLATE: &str = r###"fn parse(input: &str) -> Vec<u32> {
+    input.split("\n").map(|s| s.trim().parse().unwrap()).collect()
+}
+
+pub fn part_one(input: &str) -> Option<u32> {
+    let readings = parse(input);
     None
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
+    let readings = parse(input);
     None
 }
 
