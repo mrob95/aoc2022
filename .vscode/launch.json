@@ -7,40 +7,12 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'aoc'",
-            "cargo": {
-                "args": ["test", "--no-run", "--bin=aoc", "--package=aoc"],
-                "filter": {
-                    "name": "aoc",
-                    "kind": "bin"
-                }
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
             "name": "Debug executable 'aoc'",
             "cargo": {
-                "args": ["build", "--bin=aoc", "--package=aoc"],
+                "args": ["build", "--bin=03"],
                 "filter": {
-                    "name": "aoc",
+                    "name": "03",
                     "kind": "bin"
-                }
-            },
-            "args": ["1"],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "Debug unit tests in library 'aoc'",
-            "cargo": {
-                "args": ["test", "--no-run", "--lib", "--package=aoc"],
-                "filter": {
-                    "name": "aoc",
-                    "kind": "lib"
                 }
             },
             "args": [],
