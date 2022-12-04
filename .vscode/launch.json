@@ -7,16 +7,33 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'aoc'",
+            "name": "Debug executable",
             "cargo": {
-                "args": ["build", "--bin=03"],
+                "args": ["build", "--bin=04"],
                 "filter": {
-                    "name": "03",
+                    "name": "04",
                     "kind": "bin"
                 }
             },
             "args": [],
             "cwd": "${workspaceFolder}"
-        }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit test",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                ],
+                "filter": {
+                    "name": "04",
+                    "kind": "bin"
+                }
+            },
+            "args": ["test_part_one"],
+            "cwd": "${workspaceFolder}"
+        },
     ]
 }

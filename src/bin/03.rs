@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 fn parse(input: &str) -> Vec<&str> {
     input.trim().split("\n").collect()
 }
