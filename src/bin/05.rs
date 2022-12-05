@@ -39,12 +39,11 @@ pub fn part_one(input: &str) -> Option<String> {
             positions[to].push(c);
         }
     }
-    let mut result = Vec::new();
-    for stack in positions {
-        result.push(stack.last().unwrap().clone());
-    }
-    let s: String = result.iter().collect();
-    Some(s)
+    let result: String = positions
+        .iter()
+        .map(|p| p.last().unwrap().clone())
+        .collect();
+    Some(result)
 }
 
 pub fn part_two(input: &str) -> Option<String> {
@@ -52,22 +51,15 @@ pub fn part_two(input: &str) -> Option<String> {
     let mut positions = crates.positions.clone();
     for mv in crates.moves {
         let (from, to) = (mv.1 - 1, mv.2 - 1);
-        let height = positions[from].len();
-        let depth = height - mv.0;
-        for i in depth..height {
-            let c = positions[from][i];
-            positions[to].push(c);
-        }
-        for _ in depth..height {
-            positions[from].pop();
-        }
+        let depth = positions[from].len() - mv.0;
+        let movers = positions[from].split_off(depth);
+        positions[to].extend(movers);
     }
-    let mut result = Vec::new();
-    for stack in positions {
-        result.push(stack.last().unwrap().clone());
-    }
-    let s: String = result.iter().collect();
-    Some(s)
+    let result: String = positions
+        .iter()
+        .map(|p| p.last().unwrap().clone())
+        .collect();
+    Some(result)
 }
 
 fn main() {
