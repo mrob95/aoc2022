@@ -32,7 +32,7 @@
                     "kind": "bin"
                 }
             },
-            "args": ["test_part_one"],
+            "args": ["test_part_one", "test_part_two"],
             "cwd": "${workspaceFolder}"
         },
     ]
