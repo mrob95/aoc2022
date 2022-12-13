@@ -9,7 +9,7 @@ use std::{
 };
 
 const MODULE_TEMPLATE: &str = r###"fn parse(input: &str) -> Vec<u32> {
-    input.split("\n").map(|s| s.trim().parse().unwrap()).collect()
+    input.trim().split("\n").map(|s| s.trim().parse().unwrap()).collect()
 }
 
 pub fn part_one(input: &str) -> Option<u32> {
