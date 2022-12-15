@@ -49,6 +49,7 @@ fn parse(input: &str) -> Vec<([isize; 2], [isize; 2])> {
 }
 
 pub fn part_one(input: &str) -> Option<u64> {
+    // This is a mess. Given time I would rework this using part 2's solution
     let items = parse(input);
     let y = if cfg!(test) { 10 } else { 2000000 };
     let mut map = HashMap::<[isize; 2], Item>::new();
@@ -81,17 +82,23 @@ pub fn part_two(input: &str) -> Option<u64> {
     let slice = items.as_slice();
     let ymax = if cfg!(test) { 20 } else { 4000000 };
     for y in 0..ymax + 1 {
+        // For each y coordinate, go through the sensors in horizontal order,
+        // bumping x to the rightmost extent of the current sensor's coverage.
+        // If we go through all of the sensors without reaching the edge of
+        // the area, we have found the hole.
         let mut x = 0;
         for (sensor, beacon) in slice {
             let distance = manhattan_distance(&sensor, &beacon);
             let ydist = (sensor[1] - y).abs();
             if ydist <= distance {
                 let xdist = distance - ydist;
-                if x >= (sensor[0] - xdist) && x < sensor[0] + xdist + 1 {
+                // x is within range of this sensor
+                if x >= (sensor[0] - xdist) && x <= (sensor[0] + xdist) {
                     x = sensor[0] + xdist + 1;
                 }
             }
             if x > ymax {
+                // out of bounds
                 break;
             }
         }
